@@ -1104,3 +1104,398 @@ body::after {
   50% { opacity: 1; }
 }
 
+
+/* ================= GLOBAL FONTS ================= */
+body {
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+/* Logo + Fest Name */
+.logo,
+.hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Hero subtitle */
+.hero h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* Section titles */
+h2, h3 {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1.5px;
+}
+
+/* Countdown numbers */
+.countdown span {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+/* Buttons */
+.btn {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1.2px;
+  font-weight: 600;
+}
+
+/* Navbar links */
+.nav-links a {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+/* Paragraph text */
+p {
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+
+.hero h1 {
+  text-shadow:
+    0 0 10px #00eaff,
+    0 0 20px rgba(0,234,255,0.6),
+    0 0 40px rgba(0,234,255,0.4);
+}
+
+/* ================= FEST MAIN HEADING ================= */
+.hero h1 {
+  font-family: 'Monoton', cursive;   /* Variety fest font */
+  font-size: clamp(4rem, 10vw, 7rem); /* Large & responsive */
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #bcecf0;
+
+  text-shadow:
+    0 0 8px rgba(0,234,255,0.8),
+    0 0 18px rgba(0,234,255,0.6),
+    0 0 40px rgba(0,234,255,0.4);
+
+  margin-bottom: 10px;
+}
+
+
+
+
+/* ================= ABOUT PAGE ================= */
+.about-hero{
+  padding:140px 10% 80px;
+  text-align:center;
+  background:radial-gradient(circle at top,#38bdf833,transparent 60%);
+}
+
+.about-hero h1{
+  font-size:42px;
+  color:#38bdf8;
+}
+
+.about-section{
+  padding:90px 10%;
+}
+
+.about-section h2{
+  text-align:center;
+  margin-bottom:50px;
+  color:#38bdf8;
+}
+
+/* ================= HOD ================= */
+.hod-grid{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:40px;
+}
+
+.hod-photo img{
+  width:100%;
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(56,189,248,.4);
+}
+
+.hod-details table{
+  width:100%;
+  margin:20px 0;
+  border-collapse:collapse;
+}
+
+.hod-details td{
+  padding:8px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.hod-details ul{
+  padding-left:20px;
+}
+
+/* ================= COURSES ================= */
+.course-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:30px;
+}
+
+.course-card{
+  padding:30px;
+  background:rgba(255,255,255,.05);
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 0 25px rgba(56,189,248,.25);
+  transition:.4s;
+}
+
+.course-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 45px rgba(56,189,248,.6);
+}
+
+/* ================= STUDENTS ================= */
+.table-wrap{
+  overflow-x:auto;
+}
+
+.student-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.student-table th,
+.student-table td{
+  padding:14px;
+  border-bottom:1px solid rgba(255,255,255,.15);
+  text-align:center;
+}
+
+/* ================= INFRA ================= */
+/* ================= INFRASTRUCTURE CONTINUOUS MARQUEE ================= */
+.infra-slider{
+  overflow:hidden;
+  width:100%;
+  position:relative;
+}
+
+.infra-marquee{
+  display:flex;
+  width:fit-content;
+  animation: infraScroll 40s linear infinite;
+}
+
+.infra-track{
+  display:flex;
+  gap:30px;
+  padding-right:30px;
+}
+
+/* CONTINUOUS SCROLL */
+@keyframes infraScroll{
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(-50%);
+  }
+}
+
+/* PAUSE ON HOVER */
+.infra-slider:hover .infra-marquee{
+  animation-play-state: paused;
+}
+
+/* ================= INFRA CARDS ================= */
+.infra-card{
+  position:relative;
+  flex-shrink:0;
+}
+
+.infra-card img{
+  width:360px;
+  height:220px;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 0 30px rgba(56,189,248,.35);
+  transition:transform .4s, box-shadow .4s;
+}
+
+.infra-card:hover img{
+  transform:scale(1.07);
+  box-shadow:0 0 55px rgba(56,189,248,.7);
+}
+
+/* LABEL */
+.infra-label{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:12px;
+  text-align:center;
+  font-weight:600;
+  letter-spacing:.5px;
+  color:#e5f3ff;
+  background:linear-gradient(
+    to top,
+    rgba(2,6,23,.9),
+    rgba(2,6,23,.25)
+  );
+  backdrop-filter:blur(6px);
+  border-radius:0 0 18px 18px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .infra-card img{
+    width:280px;
+    height:180px;
+  }
+}
+
+
+
+/* ================= EVENTS PAGE ================= */
+
+.events-section{
+  padding:120px 8%;
+  background:radial-gradient(circle at top,#0b1d3a,#040814);
+}
+
+.section-title{
+  font-size:38px;
+  text-align:center;
+  margin:80px 0 40px;
+  color:#38bdf8;
+}
+
+.event-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+.event-card{
+  background:rgba(255,255,255,0.05);
+  border-radius:20px;
+  padding:15px;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(56,189,248,0.18);
+  transition:0.4s;
+}
+
+.event-card:hover{
+  transform:translateY(-14px) scale(1.05);
+  box-shadow:0 0 45px rgba(168,85,247,0.6);
+}
+
+.event-card img{
+  width:100%;
+  border-radius:15px;
+}
+
+.event-card h3{
+  text-align:center;
+  margin-top:15px;
+  color:#e6f1ff;
+}
+
+/* ================= MODALS ================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(10px);
+  z-index:3000;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  width:90%;
+  max-width:800px;
+  padding:35px;
+  border-radius:25px;
+  background:rgba(10,20,40,0.95);
+  box-shadow:0 0 50px rgba(56,189,248,0.45);
+  max-height:90vh;
+  overflow-y:auto;
+  position:relative;
+}
+
+.modal-content h2{
+  color:#38bdf8;
+}
+
+.close{
+  position:absolute;
+  right:25px;
+  top:15px;
+  font-size:30px;
+  cursor:pointer;
+}
+
+.modal-content input{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  margin:10px 0;
+  background:#020617;
+  color:#e6f1ff;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+  .section-title{font-size:30px;}
+}
+
+
+/* ================= CONTACT SECTION ================= */
+
+.contact-section {
+  text-align: center;
+}
+
+.contact-subtitle {
+  color: #cbd5f5;
+  margin-bottom: 50px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+}
+
+/* CONTACT CARD */
+.contact-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid rgba(56,189,248,0.2);
+  box-shadow: 0 0 30px rgba(56,189,248,0.2);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.contact-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 50px rgba(56,189,248,0.6);
+}
+
+.contact-card h3 {
+  color: #38bdf8;
+  margin-bottom: 12px;
+}
+
+.contact-card p {
+  margin: 6px 0;
+  color: #e5e7eb;
+}

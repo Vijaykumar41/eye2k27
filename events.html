@@ -3,173 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>EYE2K26 | Events</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="styles.css">
-
-<style>
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  color:#fff;
-  background:#040814;
-}
-.events-section{
-  padding:100px 50px;
-  background:radial-gradient(circle at top,#0b1d3a,#040814);
-}
-.section-title{
-  font-size:38px;
-  text-align:center;
-  margin:80px 0 40px;
-  color:#00eaff;
-}
-.event-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:40px;
-}
-.event-card{
-  background:rgba(255,255,255,0.05);
-  border-radius:20px;
-  padding:15px;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(0,234,255,0.15);
-  transition:.4s;
-}
-.event-card:hover{
-  transform:translateY(-12px) scale(1.05);
-  box-shadow:0 0 45px rgba(0,234,255,0.6);
-}
-.event-card img{
-  width:100%;
-  border-radius:15px;
-}
-.event-card h3{
-  text-align:center;
-  margin-top:15px;
-}
-
-/* MODALS */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  backdrop-filter:blur(8px);
-  z-index:9999;
-  justify-content:center;
-  align-items:center;
-}
-.modal-content{
-  width:90%;
-  max-width:800px;
-  padding:35px;
-  border-radius:25px;
-  background:rgba(10,20,40,.95);
-  box-shadow:0 0 50px rgba(0,234,255,.4);
-  max-height:90vh;
-  overflow-y:auto;
-  position:relative;
-}
-.close{
-  position:absolute;
-  right:25px;
-  top:15px;
-  font-size:30px;
-  cursor:pointer;
-}
-.btn{
-  margin-top:25px;
-  padding:12px 35px;
-  border-radius:25px;
-  border:none;
-  background:#00eaff;
-  font-weight:bold;
-  cursor:pointer;
-  width:100%;
-}
-
-/* FORM */
-.form-group{
-  margin-bottom:15px;
-}
-input{
-  width:100%;
-  padding:12px;
-  border-radius:8px;
-  border:none;
-  outline:none;
-}
-
-/* ================= MOBILE HAMBURGER FIX ================= */
-
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 6px;
-  z-index: 2000;
-}
-
-.hamburger span {
-  width: 28px;
-  height: 3px;
-  background: linear-gradient(90deg,#38bdf8,#a855f7);
-  border-radius: 2px;
-  transition: 0.4s;
-}
-
-@media (max-width: 900px) {
-
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 70px;
-    right: -100%;
-    width: 100%;
-    height: calc(100vh - 70px);
-    background: rgba(2,6,23,0.97);
-    backdrop-filter: blur(20px);
-
-    display: flex;              /* 🔥 DO NOT REMOVE */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
-
-    transition: right 0.4s ease;
-    z-index: 1500;
-  }
-
-  .nav-links.active {
-    right: 0;
-  }
-
-  .nav-links a {
-    font-size: 22px;
-  }
-
-  /* X animation */
-  .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-  }
-}
-
-</style>
 </head>
 
 <body>
+
+<!-- ================= NAVBAR ================= -->
 <header class="navbar">
   <div class="logo">EYE2K26</div>
 
@@ -180,8 +21,8 @@ input{
   </div>
 
   <nav class="nav-links" id="navLinks">
-    <a href="index.html" class="active">Home</a>
-    <a href="events.html">Events</a>
+    <a href="index.html">Home</a>
+    <a href="events.html" class="active">Events</a>
     <a href="portfolio.html">Portfolio</a>
     <a href="gallery.html">Gallery</a>
     <a href="about.html">About</a>
@@ -189,40 +30,79 @@ input{
   </nav>
 </header>
 
-
+<!-- ================= CIRCUIT BACKGROUND ================= -->
 <svg class="circuit-overlay" viewBox="0 0 1000 600" preserveAspectRatio="none">
-  <path class="circuit-line" d="M50 100 H300 V200 H600 V350 H900" />
-  <path class="circuit-line" d="M100 500 V300 H400 V150 H700" />
+  <path class="circuit-line" d="M50 100 H300 V200 H600 V350 H900"/>
+  <path class="circuit-line" d="M100 500 V300 H400 V150 H700"/>
   <circle class="circuit-node" cx="300" cy="200" r="4"/>
   <circle class="circuit-node" cx="600" cy="350" r="4"/>
   <circle class="circuit-node" cx="400" cy="150" r="4"/>
 </svg>
 
-
-
+<!-- ================= EVENTS ================= -->
 <section class="events-section">
 
-<h2 class="section-title">Technical Events</h2>
-<div class="event-grid">
-  <div class="event-card" onclick="openModal('Project Expo')"><img src="images\projectexpo.jpg"><h3>Project Expo</h3></div>
-  <div class="event-card" onclick="openModal('Paper Presentation')"><img src="images\paperpresen.jpg"><h3>Paper Presentation</h3></div>
-  <div class="event-card" onclick="openModal('Poster Presentation')"><img src="images\posterpresent.jpg"><h3>Poster Presentation</h3></div>
-  <div class="event-card" onclick="openModal('Workshop')"><img src="images\workshop.jpg"><h3>Workshop</h3></div>
-  <div class="event-card" onclick="openModal('Circuit Hunt')"><img src="images\circuit hunt.png"><h3>Circuit Hunt</h3></div>
-  <div class="event-card" onclick="openModal('Technical Quiz')"><img src="images\quiz.png"><h3>Technical Quiz</h3></div>
-  <div class="event-card" onclick="openModal('Hackathon')"><img src="images\hacka.png"><h3>Hackathon</h3></div>
-</div>
+  <h2 class="section-title">Technical Events</h2>
 
-<h2 class="section-title">Non-Technical Events</h2>
-<div class="event-grid">
-  <div class="event-card" onclick="openModal('Treasure Hunt')"><img src="images/treasure.jpg"><h3>Treasure Hunt</h3></div>
-  <div class="event-card" onclick="openModal('Photography')"><img src="images/photo.jpg"><h3>Photography</h3></div>
-  <div class="event-card" onclick="openModal('Fun Games')"><img src="images/games.jpg"><h3>Fun Games</h3></div>
-</div>
+  <div class="event-grid">
+    <div class="event-card" onclick="openModal('Project Expo')">
+      <img src="images/projectexpo.png">
+      <h3>Project Expo</h3>
+    </div>
+
+    <div class="event-card" onclick="openModal('Paper Presentation')">
+      <img src="images/paperpresen.jpg">
+      <h3>Paper Presentation</h3>
+    </div>
+
+    <div class="event-card" onclick="openModal('Poster Presentation')">
+      <img src="images/posterpresent.jpg">
+      <h3>Poster Presentation</h3>
+    </div>
+
+    <div class="event-card" onclick="openModal('Workshop')">
+      <img src="images/workshop.jpg">
+      <h3>Workshop</h3>
+    </div>
+
+    <div class="event-card" onclick="openModal('Circuit Hunt')">
+      <img src="images/circuithunt.png">
+      <h3>Circuit Hunt</h3>
+    </div>
+
+    <div class="event-card" onclick="openModal('Technical Quiz')">
+      <img src="images/quiz.png">
+      <h3>Technical Quiz</h3>
+    </div>
+
+    <div class="event-card" onclick="openModal('Hackathon')">
+      <img src="images/hacka.png">
+      <h3>Hackathon</h3>
+    </div>
+  </div>
+
+  <h2 class="section-title">Non-Technical Events</h2>
+
+  <div class="event-grid">
+    <div class="event-card" onclick="openModal('Treasure Hunt')">
+      <img src="images/treasure.jpg">
+      <h3>Treasure Hunt</h3>
+    </div>
+
+    <div class="event-card" onclick="openModal('Photography')">
+      <img src="images/photo.jpg">
+      <h3>Photography</h3>
+    </div>
+
+    <div class="event-card" onclick="openModal('Fun Games')">
+      <img src="images/games.jpg">
+      <h3>Fun Games</h3>
+    </div>
+  </div>
 
 </section>
 
-<!-- EVENT DETAILS MODAL -->
+<!-- ================= EVENT DETAILS MODAL ================= -->
 <div class="modal" id="eventModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -249,302 +129,27 @@ input{
   </div>
 </div>
 
-<!-- REGISTRATION MODAL -->
+<!-- ================= REGISTRATION MODAL ================= -->
 <div class="modal" id="registerModal">
   <div class="modal-content">
     <span class="close" onclick="closeRegister()">&times;</span>
 
     <h2>Register for <span id="regEvent"></span></h2>
 
-    <div class="form-group">
-      <input type="text" id="name" placeholder="Student Name">
-    </div>
-
-    <div class="form-group">
-      <input type="email" id="email" placeholder="Email">
-    </div>
-
-    <div class="form-group">
-      <input type="text" id="college" placeholder="College Name">
-    </div>
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="email" id="email" placeholder="Email">
+    <input type="text" id="college" placeholder="College Name">
 
     <button class="btn" onclick="startPayment()">Proceed to Payment</button>
   </div>
 </div>
+
 <footer>
   <p>© 2026 EYE2K26 | Department of EEE, JNTUA CEA</p>
 </footer>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-<script>
-const data = {
-
-  /* ================= TECHNICAL EVENTS ================= */
-
-  "Project Expo": {
-    desc: "Showcase innovative electrical and electronics projects with working models and prototypes.",
-    rules: [
-      "Maximum 4 members per team",
-      "Working model or prototype mandatory",
-      "One team per college"
-    ],
-    fee: 800,
-    p1: 3000,
-    p2: 1500,
-    coords: [
-      "B Karthik – 8019239711",
-      "S Mehaboob Basha – 8897327514"
-    ]
-  },
-
-  "Paper Presentation": {
-    desc: "Present your research ideas related to Electrical and Power Systems.",
-    rules: [
-      "Maximum 2 authors per paper",
-      "IEEE format mandatory",
-      "8 minutes presentation + 2 minutes Q&A"
-    ],
-    fee: 500,
-    p1: 2000,
-    p2: 1000,
-    coords: [
-      "P Kavya Sree – 8096990897"
-    ]
-  },
-
-  "Poster Presentation": {
-    desc: "Visually present innovative technical concepts and ideas.",
-    rules: [
-      "Poster size A1 only",
-      "Original content required",
-      "One poster per team"
-    ],
-    fee: 400,
-    p1: 1500,
-    p2: 800,
-    coords: [
-      "K Varshitha – 7396759396"
-    ]
-  },
-
-  "Workshop": {
-    desc: "Hands-on technical workshop conducted by industry experts.",
-    rules: [
-      "Individual participation",
-      "Laptop compulsory",
-      "Limited seats available"
-    ],
-    fee: 600,
-    p1: 0,
-    p2: 0,
-    coords: [
-      "A Sai Teja – 9876543210"
-    ]
-  },
-
-  "Circuit Hunt": {
-    desc: "Solve electrical circuits and puzzles under time pressure.",
-    rules: [
-      "Team of 2 members",
-      "Multiple elimination rounds",
-      "Basic circuit knowledge required"
-    ],
-    fee: 300,
-    p1: 1500,
-    p2: 800,
-    coords: [
-      "N Rohith – 9123456780"
-    ]
-  },
-
-  "Technical Quiz": {
-    desc: "Test your Electrical & Electronics Engineering knowledge.",
-    rules: [
-      "Team of 2 members",
-      "MCQ + Rapid fire rounds",
-      "Decision of judges is final"
-    ],
-    fee: 300,
-    p1: 1200,
-    p2: 600,
-    coords: [
-      "M Keerthana – 9988776655"
-    ]
-  },
-
-  "Hackathon": {
-    desc: "24-hour innovation challenge to solve real-world problems.",
-    rules: [
-      "Team of 3 to 5 members",
-      "Problem statement given on spot",
-      "Bring your own laptops"
-    ],
-    fee: 1000,
-    p1: 5000,
-    p2: 2500,
-    coords: [
-      "S Sai Kumar – 9876501234"
-    ]
-  },
-
-  /* ================= NON-TECHNICAL EVENTS ================= */
-
-  "Treasure Hunt": {
-    desc: "Logic-based treasure hunt filled with fun and challenges.",
-    rules: [
-      "Team of 3 members",
-      "Mobile phones allowed",
-      "Follow instructions carefully"
-    ],
-    fee: 200,
-    p1: 1000,
-    p2: 500,
-    coords: [
-      "R Harsha – 9000011111"
-    ]
-  },
-
-  "Photography": {
-    desc: "Capture creative moments during the fest.",
-    rules: [
-      "One photo per participant",
-      "Original photo only",
-      "Basic editing allowed"
-    ],
-    fee: 200,
-    p1: 1000,
-    p2: 500,
-    coords: [
-      "V Anjali – 9887766554"
-    ]
-  },
-
-  "Fun Games": {
-    desc: "Exciting fun and team-based games.",
-    rules: [
-      "On-spot registration",
-      "Rules will be explained at venue"
-    ],
-    fee: 100,
-    p1: 500,
-    p2: 300,
-    coords: [
-      "Student Coordinators"
-    ]
-  }
-
-};
-
-
-let selectedEvent = "";
-
-/* OPEN EVENT DETAILS */
-function openModal(name) {
-  selectedEvent = name;
-  const e = data[name];
-
-  document.getElementById("eventTitle").innerText = name;
-  document.getElementById("eventDesc").innerText = e.desc;
-  document.getElementById("eventFee").innerText = e.fee;
-  document.getElementById("p1").innerText = e.p1;
-  document.getElementById("p2").innerText = e.p2;
-
-  const rules = document.getElementById("eventRules");
-  rules.innerHTML = "";
-  e.rules.forEach(r => rules.innerHTML += `<li>${r}</li>`);
-
-  const coords = document.getElementById("eventCoordinators");
-  coords.innerHTML = "";
-  e.coords.forEach(c => coords.innerHTML += `<li>${c}</li>`);
-
-  document.getElementById("eventModal").style.display = "flex";
-}
-
-/* CLOSE EVENT MODAL */
-function closeModal() {
-  document.getElementById("eventModal").style.display = "none";
-}
-
-/* OPEN REGISTRATION */
-function openRegister() {
-  document.getElementById("regEvent").innerText = selectedEvent;
-  document.getElementById("eventModal").style.display = "none";
-  document.getElementById("registerModal").style.display = "flex";
-}
-
-/* CLOSE REGISTRATION */
-function closeRegister() {
-  document.getElementById("registerModal").style.display = "none";
-}
-
-/* PAYMENT */
-function startPayment() {
-  const studentName = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const college = document.getElementById("college").value.trim();
-
-  if (!studentName || !email || !college) {
-    alert("Please fill all details");
-    return;
-  }
-
-  new Razorpay({
-    key: "rzp_test_xxxxxxxxxx",   // replace with your key
-    amount: data[selectedEvent].fee * 100,
-    currency: "INR",
-    name: "EYE2K26",
-    description: selectedEvent + " Registration",
-    handler: function (response) {
-
-      const message =
-`🎉 EYE2K26 Registration Confirmed 🎉
-Name: ${studentName}
-Event: ${selectedEvent}
-College: ${college}
-Payment ID: ${response.razorpay_payment_id}
-
-📍 Venue: EEE Department
-📅 Date: April 5, 2025
-
-Thank you for registering!`;
-
-      window.open(
-        "https://wa.me/918688753307?text=" + encodeURIComponent(message),
-        "_blank"
-      );
-
-      alert("Payment Successful!");
-      closeRegister();
-    },
-    theme: { color: "#00eaff" }
-  }).open();
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("navLinks");
-
-  hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-    hamburger.classList.toggle("active");
-  });
-
-  // Optional: close menu when clicking a link
-  navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      navLinks.classList.remove("active");
-      hamburger.classList.remove("active");
-    });
-  });
-});
-
-
-</script>
-
+<script src="events.js"></script>
 
 </body>
 </html>

@@ -2,15 +2,128 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EYE2K26 | Gallery</title>
+
 <link rel="stylesheet" href="styles.css">
-<script defer src="script.js"></script>
+
+<style>
+/* ================= GALLERY BASE ================= */
+.gallery-section{
+  padding:120px 6%;
+}
+
+.gallery-section h2{
+  text-align:center;
+  color:#38bdf8;
+  margin-bottom:40px;
+  font-size:34px;
+  letter-spacing:1px;
+}
+
+/* ================= CONTINUOUS FLOW ================= */
+.flow-wrapper{
+  overflow:hidden;
+  position:relative;
+}
+
+.flow-track{
+  display:flex;
+  gap:35px;
+  width:max-content;
+  animation: flowLeft 35s linear infinite;
+}
+
+/* SPEED VARIATIONS */
+.flow-track.fast{ animation-duration: 25s; }
+.flow-track.slow{ animation-duration: 45s; }
+
+@keyframes flowLeft{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+/* ================= IMAGES ================= */
+.flow-track img{
+  width:420px;
+  height:260px;
+  object-fit:cover;
+  border-radius:22px;
+  box-shadow:
+    0 0 30px rgba(56,189,248,.35),
+    inset 0 0 20px rgba(56,189,248,.15);
+  transition:
+    transform .6s,
+    box-shadow .6s,
+    filter .6s;
+  cursor:pointer;
+}
+
+/* ELECTRICAL HOVER */
+.flow-track img:hover{
+  transform: translateY(-20px) scale(1.08);
+  box-shadow:
+    0 0 70px rgba(56,189,248,.8),
+    inset 0 0 40px rgba(168,85,247,.25);
+  filter: brightness(1.2);
+}
+
+/* PAUSE ON HOVER */
+.flow-wrapper:hover .flow-track{
+  animation-play-state: paused;
+}
+
+/* ================= LIGHTBOX ================= */
+.lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:20px;
+  box-shadow:0 0 60px rgba(56,189,248,.7);
+}
+
+.lightbox-close{
+  position:absolute;
+  top:25px;
+  right:40px;
+  font-size:45px;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ================= GLASS ================= */
+.glass{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(56,189,248,.15);
+  backdrop-filter:blur(18px);
+  border-radius:30px;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .flow-track img{
+    width:280px;
+    height:180px;
+  }
+}
+</style>
 </head>
+
 <body>
 
+<!-- ================= NAVBAR ================= -->
 <header class="navbar">
   <div class="logo">EYE2K26</div>
-  <nav>
+  <nav class="nav-links">
     <a href="index.html">Home</a>
     <a href="events.html">Events</a>
     <a href="portfolio.html">Portfolio</a>
@@ -20,28 +133,85 @@
   </nav>
 </header>
 
+<!-- ================= PRESENT STUDENTS ================= -->
 <section class="gallery-section">
-  <h2>Gallery – EYE Moments</h2>
+  <h2>Present Students – EYE2K26</h2>
 
-  <div class="gallery-grid">
-    <img src="images/gallery1.jpg" onclick="openLightbox(this.src)">
-    <img src="images/gallery2.jpg" onclick="openLightbox(this.src)">
-    <img src="images/gallery3.jpg" onclick="openLightbox(this.src)">
-    <img src="images/gallery4.jpg" onclick="openLightbox(this.src)">
-    <img src="images/gallery5.jpg" onclick="openLightbox(this.src)">
-    <img src="images/gallery6.jpg" onclick="openLightbox(this.src)">
+  <div class="flow-wrapper">
+    <div class="flow-track fast">
+
+      <img src="images\IMG20240716135730.jpg" onclick="openLightbox(this.src)">
+      <img src="images\IMG20240716143327.jpg" onclick="openLightbox(this.src)">
+      <img src="images\IMG20240716144756.jpg" onclick="openLightbox(this.src)">
+      <img src="images\IMG20240717075253.jpg" onclick="openLightbox(this.src)">
+
+      <img src="images\IMG20240717075253.jpg" onclick="openLightbox(this.src)">
+      <img src="images\IMG20240717075253.jpg" onclick="openLightbox(this.src)">
+      <img src="images\IMG20240717075253.jpg" onclick="openLightbox(this.src)">
+      <img src="images\IMG20240717075253.jpg" onclick="openLightbox(this.src)">
+
+    </div>
   </div>
 </section>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+<!-- ================= EYE2K25 ================= -->
+<section class="gallery-section glass">
+  <h2>EYE2K25 Highlights</h2>
+
+  <div class="flow-wrapper">
+    <div class="flow-track">
+      <img src="images/eye2k25_1.jpg" onclick="openLightbox(this.src)">
+      <img src="images/eye2k25_2.jpg" onclick="openLightbox(this.src)">
+      <img src="images/eye2k25_3.jpg" onclick="openLightbox(this.src)">
+      <img src="images/eye2k25_4.jpg" onclick="openLightbox(this.src)">
+      <!-- DUPLICATE -->
+      <img src="images/eye2k25_1.jpg">
+      <img src="images/eye2k25_2.jpg">
+      <img src="images/eye2k25_3.jpg">
+      <img src="images/eye2k25_4.jpg">
+    </div>
+  </div>
+</section>
+
+<!-- ================= EYE2K24 ================= -->
+<section class="gallery-section">
+  <h2>EYE2K24 Memories</h2>
+
+  <div class="flow-wrapper">
+    <div class="flow-track slow">
+      <img src="images/eye2k24_1.jpg" onclick="openLightbox(this.src)">
+      <img src="images/eye2k24_2.jpg" onclick="openLightbox(this.src)">
+      <img src="images/eye2k24_3.jpg" onclick="openLightbox(this.src)">
+      <img src="images/eye2k24_4.jpg" onclick="openLightbox(this.src)">
+      <!-- DUPLICATE -->
+      <img src="images/eye2k24_1.jpg">
+      <img src="images/eye2k24_2.jpg">
+      <img src="images/eye2k24_3.jpg">
+      <img src="images/eye2k24_4.jpg">
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <span class="lightbox-close">&times;</span>
   <img id="lightbox-img">
 </div>
 
 <footer>
-  <p>© 2026 EYE2K26 | JNTUA CEA</p>
+  <p>© 2026 EYE2K26 | Department of EEE, JNTUA CEA</p>
 </footer>
+
+<!-- ================= JS ================= -->
+<script>
+function openLightbox(src){
+  lightbox.style.display="flex";
+  document.getElementById("lightbox-img").src=src;
+}
+function closeLightbox(){
+  lightbox.style.display="none";
+}
+</script>
 
 </body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EYE2K26 | Gallery</title>
+<link rel="stylesheet" href="styles.css">
+<script defer src="script.js"></script>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">EYE2K26</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="gallery-section">
+  <h2>Gallery – EYE Moments</h2>
+
+  <div class="gallery-grid">
+    <img src="images/gallery1.jpg" onclick="openLightbox(this.src)">
+    <img src="images/gallery2.jpg" onclick="openLightbox(this.src)">
+    <img src="images/gallery3.jpg" onclick="openLightbox(this.src)">
+    <img src="images/gallery4.jpg" onclick="openLightbox(this.src)">
+    <img src="images/gallery5.jpg" onclick="openLightbox(this.src)">
+    <img src="images/gallery6.jpg" onclick="openLightbox(this.src)">
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img">
+</div>
+
+<footer>
+  <p>© 2026 EYE2K26 | JNTUA CEA</p>
+</footer>
+
+</body>
+</html>

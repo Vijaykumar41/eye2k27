@@ -1,0 +1,883 @@
+/* ====================================================== RESET & BASE ====================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #020617, #000000);
+  color: #e5e7eb;
+  overflow-x: hidden;
+}
+
+/* ====================================================== ELECTRICAL BACKGROUND ANIMATION (Flowing current lines) ====================================================== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(56,189,248,0.05) 0px,
+      rgba(56,189,248,0.05) 1px,
+      transparent 1px,
+      transparent 120px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(168,85,247,0.04) 0px,
+      rgba(168,85,247,0.04) 1px,
+      transparent 1px,
+      transparent 140px
+    );
+  animation: currentFlow 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes currentFlow {
+  from { background-position: 0 0; }
+  to { background-position: 600px 600px; }
+}
+
+/* ====================================================== NAVBAR (Circuit Glass Style) ====================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 16px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(56,189,248,0.15);
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56,189,248,0.6);
+}
+
+.nav-links a {
+  color: #cbd5f5;
+  text-decoration: none;
+  margin-left: 26px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg,#38bdf8,#a855f7);
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links .active::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: #38bdf8;
+}
+
+/* ====================================================== HERO (Oscilloscope Signal Feel) ====================================================== */
+.hero {
+  min-height: 100vh;
+  padding-top: 140px;
+  text-align: center;
+  background: radial-gradient(circle at center, rgba(56,189,248,0.12), transparent 60%);
+}
+
+.hero h1 {
+  font-size: 50px;
+  background: linear-gradient(90deg,#38bdf8,#a855f7,#38bdf8);
+  background-size: 200% auto;
+  animation: signalWave 4s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes signalWave {
+  to { background-position: 200% center; }
+}
+
+.hero p {
+  margin: 18px 0 30px;
+  color: #cbd5f5;
+}
+
+/* ====================================================== FEST LOGO (Energy Core Animation) ====================================================== */
+.fest-logo {
+  width: 180px;
+  margin: 30px auto;
+  display: block;
+  opacity: 0;
+  animation: logoPowerOn 1.8s ease-out forwards, energyPulse 4s ease-in-out infinite;
+}
+
+@keyframes logoPowerOn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    filter: drop-shadow(0 0 0 rgba(56,189,248,0));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 35px rgba(56,189,248,0.8));
+  }
+}
+
+@keyframes energyPulse {
+  0%,100% { filter: drop-shadow(0 0 20px rgba(56,189,248,0.6)); }
+  50% { filter: drop-shadow(0 0 45px rgba(168,85,247,0.9)); }
+}
+
+/* ====================================================== BUTTON (Electric Spark) ====================================================== */
+.btn {
+  padding: 13px 28px;
+  border-radius: 30px;
+  background: linear-gradient(90deg,#38bdf8,#a855f7);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(56,189,248,0.4);
+  transition: 0.3s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 40px rgba(168,85,247,0.7);
+  transform: translateY(-2px);
+}
+
+/* ====================================================== SECTIONS (Lab Glass Panels) ====================================================== */
+.section {
+  padding: 100px 10%;
+}
+
+.glass {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(56,189,248,0.15);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+}
+
+/* ====================================================== GRID LAYOUT ====================================================== */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.grid img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(56,189,248,0.25);
+  transition: 0.5s;
+}
+
+.grid img:hover {
+  transform: scale(1.04);
+}
+
+/* ====================================================== TEXT ====================================================== */
+.text h2 {
+  font-size: 32px;
+  color: #38bdf8;
+  margin-bottom: 14px;
+}
+
+.text p {
+  line-height: 1.7;
+  color: #cbd5f5;
+}
+
+/* ====================================================== SCROLL FADE (Signal Rise) ====================================================== */
+.fade {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 0.9s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====================================================== FOOTER ====================================================== */
+footer {
+  text-align: center;
+  padding: 35px;
+  border-top: 1px solid rgba(56,189,248,0.15);
+  color: #94a3b8;
+}
+
+/* ====================================================== RESPONSIVE ====================================================== */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 36px; }
+  .nav-links { display: none; }
+}
+
+/* ================= CIRCUIT SVG OVERLAY ================= */
+.circuit-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.35;
+}
+
+.circuit-line {
+  fill: none;
+  stroke: #38bdf8;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 10;
+  animation: circuitFlow 12s linear infinite;
+}
+
+.circuit-node {
+  fill: #a855f7;
+  animation: nodePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes circuitFlow {
+  to { stroke-dashoffset: -200; }
+}
+
+@keyframes nodePulse {
+  0%,100% { opacity: 0.4; r: 3; }
+  50% { opacity: 1; r: 5; }
+}
+
+/* ================= EVENTS ================= */
+.events-section {
+  padding: 120px 10%;
+  text-align: center;
+}
+
+.events-section h2 {
+  font-size: 2.5rem;
+  color: cyan;
+  margin-bottom: 50px;
+}
+
+/* EVENT GRID */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+}
+
+/* EVENT CARD */
+.event-card {
+  position: relative;
+  background: #0b1320;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0,255,255,0.15);
+  transform-style: preserve-3d;
+  transition: 0.5s;
+}
+
+.event-card:hover {
+  transform: translateY(-10px) rotateX(5deg);
+}
+
+/* PCB TRACE EFFECT */
+.event-card .pcb {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(0,255,255,0.2), transparent);
+  opacity: 0;
+  animation: pcb 2s linear infinite;
+}
+
+.event-card:hover .pcb {
+  opacity: 1;
+}
+
+@keyframes pcb {
+  from { background-position: 0; }
+  to { background-position: 600px; }
+}
+
+.event-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.event-info {
+  padding: 20px;
+}
+
+.event-info h3 {
+  margin-bottom: 15px;
+  color: #e6f1ff;
+}
+
+.event-info button {
+  padding: 10px 22px;
+  border-radius: 25px;
+  border: 2px solid cyan;
+  background: transparent;
+  color: cyan;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.event-info button:hover {
+  background: cyan;
+  color: #000;
+}
+
+/* ================= MODAL ================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #0c1425;
+  padding: 30px;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 15px;
+  box-shadow: 0 0 40px rgba(0,255,255,0.3);
+  animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close {
+  font-size: 28px;
+  float: right;
+  cursor: pointer;
+  color: cyan;
+}
+
+/* FORM */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register-form input,
+.register-form select {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #02040a;
+  color: #e6f1ff;
+}
+
+.register-form button {
+  margin-top: 10px;
+  padding: 12px;
+  background: cyan;
+  color: #000;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.register-form button:hover {
+  background: #00e0ff;
+}
+
+
+.modal-content h2 {
+  color: cyan;
+  margin-bottom: 10px;
+}
+
+.modal-content h4 {
+  margin-top: 18px;
+  color: #38bdf8;
+}
+
+.modal-content ul {
+  padding-left: 18px;
+  line-height: 1.6;
+}
+
+.modal-content p {
+  line-height: 1.6;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 700px;
+  padding: 30px;
+  border-radius: 20px;
+  color: #fff;
+  animation: scaleIn 0.4s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+
+
+
+/* ===========================
+   PORTFOLIO / FACULTY STYLES
+   =========================== */
+
+/* Page background already exists – this blends with index */
+.portfolio-hero {
+  text-align: center;
+  padding: 140px 20px 80px;
+}
+
+.portfolio-hero h1 {
+  font-size: 48px;
+  background: linear-gradient(90deg, #38bdf8, #a855f7, #38bdf8);
+  background-size: 200%;
+  animation: portfolioGradient 6s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.portfolio-hero p {
+  margin-top: 12px;
+  color: #94a3b8;
+  font-size: 16px;
+}
+
+@keyframes portfolioGradient {
+  to { background-position: 200%; }
+}
+
+/* ===== FACULTY SECTION ===== */
+.faculty-section {
+  padding: 80px 10%;
+}
+
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 45px;
+}
+
+/* ===== FACULTY CARD ===== */
+.faculty-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 32px 20px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.18);
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  transform-style: preserve-3d;
+  animation: facultyFadeUp 1s ease forwards;
+}
+
+.faculty-card:hover {
+  transform: translateY(-18px) rotateX(6deg);
+  box-shadow: 0 0 65px rgba(168, 85, 247, 0.65);
+}
+
+/* ===== ELECTRICAL GLOW BORDER ===== */
+.faculty-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(120deg, #38bdf8, #a855f7, #38bdf8);
+  opacity: 0.25;
+  filter: blur(20px);
+  z-index: -1;
+  animation: glowPulse 4s infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.55; }
+}
+
+/* ===== FACULTY IMAGE ===== */
+.faculty-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(56, 189, 248, 0.7);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.65);
+  margin-bottom: 18px;
+  transition: transform 0.5s ease;
+}
+
+.faculty-card:hover img {
+  transform: scale(1.08);
+}
+
+/* ===== TEXT ===== */
+.faculty-card h3 {
+  font-size: 20px;
+  color: #e6f1ff;
+}
+
+.faculty-card p {
+  margin: 6px 0;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* ===== SPECIALIZATION BADGE ===== */
+.faculty-card span {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #38bdf8, #a855f7);
+  color: #000;
+  font-size: 13px;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.7);
+}
+
+/* ===== ENTRANCE ANIMATION ===== */
+@keyframes facultyFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .portfolio-hero h1 {
+    font-size: 34px;
+  }
+  .faculty-section {
+    padding: 60px 6%;
+  }
+}
+
+
+
+/* ================= HERO EXTRA INFO ================= */
+.hero-info {
+  margin-top: 18px;
+  text-align: center;
+  color: #cfefff;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  opacity: 0.95;
+}
+
+/* ================= COUNTDOWN TIMER ================= */
+.countdown {
+  margin: 30px auto 20px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.countdown div {
+  width: 85px;
+  height: 85px;
+  background: rgba(0, 234, 255, 0.08);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 0 10px rgba(0,234,255,0.25),
+    0 0 18px rgba(0,234,255,0.35);
+  animation: pulseGlow 2.5s infinite;
+}
+
+.countdown span {
+  font-size: 28px;
+  font-weight: 700;
+  color: #00eaff;
+  text-shadow: 0 0 10px rgba(0,234,255,0.8);
+}
+
+.countdown small {
+  margin-top: 5px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #b7eaff;
+}
+
+/* Glow pulse animation */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 18px rgba(0,234,255,0.35); }
+  50% { box-shadow: 0 0 35px rgba(0,234,255,0.75); }
+}
+
+/* ================= HERO HIGHLIGHTS ================= */
+/* ===== UPDATED HIGHLIGHT SESSION STYLE ===== */
+.slideshow {
+  margin: 40px auto;
+  max-width: 900px;
+  height: 420px;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(168,85,247,0.45);
+  position: relative;
+  background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(168,85,247,0.08));
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: translateX(50px) scale(1.05);
+  transition: opacity 1s ease, transform 1.2s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+
+/* ===== PAST EVENTS SLIDER ===== */
+.past-slider {
+  margin-top: 40px;
+  overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 0 35px rgba(0,234,255,0.35);
+}
+
+.past-track {
+  display: flex;
+  gap: 25px;
+  width: max-content;
+  animation: pastMove 25s linear infinite;
+}
+
+.past-track img {
+  width: 300px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(56,189,248,0.4);
+  transition: transform 0.4s;
+}
+
+.past-track img:hover {
+  transform: scale(1.08);
+}
+
+@keyframes pastMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.hero-highlights {
+   margin-top: 28px; 
+   display: flex; 
+   justify-content: center; 
+   gap: 30px; flex-wrap: wrap; 
+   font-size: 14px; 
+   color: #e8fbff; 
+   letter-spacing: 1px; } 
+.hero-highlights span {
+   padding: 8px 18px; 
+   border-radius: 30px; 
+   background: linear-gradient( 135deg, rgba(0,234,255,0.18), rgba(0,234,255,0.04) ); 
+   border: 1px solid rgba(0,234,255,0.25); box-shadow: 0 0 18px rgba(0,234,255,0.35); 
+   transition: transform 0.4s, box-shadow 0.4s; } 
+.hero-highlights span:hover { transform: translateY(-5px) scale(1.05);
+   box-shadow: 0 0 35px rgba(0,234,255,0.75); }
+
+
+
+   /* ===== HIGHLIGHT SESSION CARD ===== */
+.highlight-title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 35px;
+  color: #e6f1ff;
+}
+
+.highlight-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.highlight-card {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  height: 260px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0b1220, #020617);
+  box-shadow: 0 0 45px rgba(56,189,248,0.35);
+}
+
+.highlight-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+}
+
+/* CONTENT OVER IMAGE */
+.highlight-content {
+  position: absolute;
+  inset: 0;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #e6f1ff;
+}
+
+.highlight-tag {
+  letter-spacing: 4px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.highlight-content h3 {
+  font-size: 28px;
+  margin: 8px 0 10px;
+  color: #ffffff;
+}
+
+.highlight-content .date {
+  font-size: 14px;
+  color: #cbd5f5;
+  margin-bottom: 10px;
+}
+
+.highlight-content .desc {
+  max-width: 520px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cbd5f5;
+}
+
+/* NAV ARROWS */
+.nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  background: rgba(56,189,248,0.35);
+}
+
+/* DOTS */
+.dots {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #475569;
+}
+
+.dot.active {
+  width: 22px;
+  border-radius: 10px;
+  background: #e6f1ff;
+}
+
+/* ===== MOBILE (vertical look like screenshot) ===== */
+@media (max-width: 768px) {
+  .highlight-card {
+    height: 320px;
+  }
+
+  .highlight-content {
+    padding: 22px;
+  }
+
+  .highlight-content h3 {
+    font-size: 22px;
+  }
+
+  .highlight-content .desc {
+    font-size: 13px;
+  }
+}

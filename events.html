@@ -100,23 +100,95 @@ input{
   border:none;
   outline:none;
 }
+
+/* ================= MOBILE HAMBURGER FIX ================= */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+  z-index: 2000;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: linear-gradient(90deg,#38bdf8,#a855f7);
+  border-radius: 2px;
+  transition: 0.4s;
+}
+
+@media (max-width: 900px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: rgba(2,6,23,0.97);
+    backdrop-filter: blur(20px);
+
+    display: flex;              /* 🔥 DO NOT REMOVE */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+
+    transition: right 0.4s ease;
+    z-index: 1500;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 22px;
+  }
+
+  /* X animation */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+}
+
 </style>
 </head>
 
 <body>
-  <header class="navbar">
+<header class="navbar">
   <div class="logo">EYE2K26</div>
 
-  <!-- 🔴 FIX: added nav-links class -->
-  <nav class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="events.html" class="active">Events</a>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html" class="active">Home</a>
+    <a href="events.html">Events</a>
     <a href="portfolio.html">Portfolio</a>
     <a href="gallery.html">Gallery</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 </header>
+
 
 <svg class="circuit-overlay" viewBox="0 0 1000 600" preserveAspectRatio="none">
   <path class="circuit-line" d="M50 100 H300 V200 H600 V350 H900" />
@@ -450,6 +522,27 @@ Thank you for registering!`;
     theme: { color: "#00eaff" }
   }).open();
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    hamburger.classList.toggle("active");
+  });
+
+  // Optional: close menu when clicking a link
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      hamburger.classList.remove("active");
+    });
+  });
+});
+
+
 </script>
 
 

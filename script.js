@@ -166,3 +166,51 @@ function toggleMenu() {
   document.querySelector(".hamburger").classList.toggle("active");
 }
 
+
+
+
+/* ================= ELECTRIC SPARK CURSOR ================= */
+const canvas = document.getElementById("sparkCanvas");
+const ctx = canvas.getContext("2d");
+
+let sparks = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+document.addEventListener("mousemove", e => {
+  for (let i = 0; i < 3; i++) {
+    sparks.push({
+      x: e.clientX,
+      y: e.clientY,
+      vx: (Math.random() - 0.5) * 4,
+      vy: (Math.random() - 0.5) * 4,
+      life: 30
+    });
+  }
+});
+
+function drawSparks() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  sparks.forEach((s, i) => {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,234,255,${s.life / 30})`;
+    ctx.fill();
+
+    s.x += s.vx;
+    s.y += s.vy;
+    s.life--;
+
+    if (s.life <= 0) sparks.splice(i, 1);
+  });
+
+  requestAnimationFrame(drawSparks);
+}
+drawSparks();
+

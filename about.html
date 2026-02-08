@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EYE2K26 | About Us</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -13,7 +13,12 @@
 <!-- ================= NAVBAR ================= -->
 <header class="navbar">
   <div class="logo">EYE2K26</div>
-  <nav class="nav-links">
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
     <a href="events.html">Events</a>
     <a href="portfolio.html">Portfolio</a>
@@ -35,12 +40,12 @@
 
   <div class="hod-grid">
     <div class="hod-photo">
-      <img src="images\hod (1).JPG" alt="HOD EEE">
+      <img src="images/hod.jpg" alt="HOD EEE">
     </div>
 
     <div class="hod-details">
       <h3>Dr. M. Ramasekhar reddy</h3>
-      <p class="designation">Professor & Head, EEE Department</p>
+      <p class="designation">Associate Professor & Head, EEE Department</p>
 
       <table>
         <tr><td><b>Qualification</b></td><td>M.Tech, Ph.D</td></tr>
@@ -61,7 +66,7 @@
 
       <h4>Contact</h4>
       <p>
-        📍 Professor & HOD, EEE Dept, JNTUA CEA, Ananthapuramu<br>
+        📍 Associate Professor & HOD, EEE Dept, JNTUA CEA, Ananthapuramu<br>
         📞 +91 7382720330<br>
         ✉ ramasekharreddy.eee@jntua.ac.in
       </p>
@@ -113,7 +118,7 @@
       <tbody>
         <!-- You can populate this dynamically from CSV later -->
         <tr><td>2022–26</td><td>B.Tech (EEE)</td><td>240</td></tr>
-        <tr><td>2023–25</td><td>M.Tech (EPS)</td><td>36</td></tr>
+        <tr><td>2024–26</td><td>M.Tech (EPS and PID)</td><td>36</td></tr>
         <tr><td>Ph.D</td><td>Research Scholars</td><td>18</td></tr>
       </tbody>
     </table>
@@ -310,8 +315,25 @@ document.addEventListener("scroll",()=>{
     }
   });
 });
+/* ================= HAMBURGER MENU ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    hamburger.classList.toggle("active");
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      hamburger.classList.remove("active");
+    });
+  });
+});
 </script>
 
 </body>
 </html>
-

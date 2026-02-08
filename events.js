@@ -3,8 +3,6 @@
 ===================================================== */
 const data = {
 
-  /* ========== TECHNICAL EVENTS ========== */
-
   "Project Expo": {
     desc: "Showcase innovative electrical and electronics projects with working models and prototypes.",
     rules: [
@@ -111,8 +109,6 @@ const data = {
     ]
   },
 
-  /* ========== NON-TECHNICAL EVENTS ========== */
-
   "Treasure Hunt": {
     desc: "Logic-based treasure hunt filled with fun and challenges.",
     rules: [
@@ -175,11 +171,19 @@ function openModal(name) {
 
   const rulesList = document.getElementById("eventRules");
   rulesList.innerHTML = "";
-  e.rules.forEach(r => rulesList.innerHTML += `<li>${r}</li>`);
+  e.rules.forEach(rule => {
+    const li = document.createElement("li");
+    li.textContent = rule;
+    rulesList.appendChild(li);
+  });
 
   const coordList = document.getElementById("eventCoordinators");
   coordList.innerHTML = "";
-  e.coords.forEach(c => coordList.innerHTML += `<li>${c}</li>`);
+  e.coords.forEach(coord => {
+    const li = document.createElement("li");
+    li.textContent = coord;
+    coordList.appendChild(li);
+  });
 
   document.getElementById("eventModal").style.display = "flex";
 }
@@ -202,7 +206,7 @@ function closeRegister() {
 }
 
 /* =====================================================
-   PAYMENT + WHATSAPP CONFIRMATION
+   PAYMENT + BACKEND + WHATSAPP
 ===================================================== */
 function startPayment() {
 
@@ -217,8 +221,8 @@ function startPayment() {
 
   const amount = data[selectedEvent].fee * 100;
 
-  new Razorpay({
-    key: "rzp_test_xxxxxxxxxx",   // 🔴 replace with live key later
+  const razorpay = new Razorpay({
+    key: "rzp_test_xxxxxxxxxx", // 🔴 Replace with LIVE key
     amount: amount,
     currency: "INR",
     name: "EYE2K26",
@@ -226,6 +230,21 @@ function startPayment() {
 
     handler: function (response) {
 
+      /* ===== SAVE TO BACKEND ===== */
+      fetch("https://YOUR-BACKEND-URL.onrender.com/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          studentName: name,
+          email: email,
+          college: college,
+          eventName: selectedEvent,
+          amount: data[selectedEvent].fee,
+          paymentId: response.razorpay_payment_id
+        })
+      });
+
+      /* ===== WHATSAPP CONFIRMATION ===== */
       const message =
 `🎉 *EYE2K26 Registration Confirmed* 🎉
 
@@ -249,7 +268,9 @@ Thank you for registering!`;
     },
 
     theme: { color: "#00eaff" }
-  }).open();
+  });
+
+  razorpay.open();
 }
 
 /* =====================================================

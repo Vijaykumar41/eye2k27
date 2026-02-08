@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>EYE2K26 | Contact</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -12,7 +13,12 @@
 <!-- ================= NAVBAR ================= -->
 <header class="navbar">
   <div class="logo">EYE2K26</div>
-  <nav class="nav-links">
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
     <a href="events.html">Events</a>
     <a href="portfolio.html">Portfolio</a>
@@ -103,6 +109,25 @@ document.addEventListener("scroll", () => {
     if (el.getBoundingClientRect().top < window.innerHeight - 100) {
       el.classList.add("show");
     }
+  });
+});
+
+/* ================= HAMBURGER MENU ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    hamburger.classList.toggle("active");
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      hamburger.classList.remove("active");
+    });
   });
 });
 </script>

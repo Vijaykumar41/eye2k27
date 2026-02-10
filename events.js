@@ -252,6 +252,20 @@ if (!/^[6-9][0-9]{9}$/.test(mobile)) {
     value: upiURL,
     size: 220
   });
+/* ================= UPI DEEP LINKS ================= */
+
+// PhonePe
+document.getElementById("phonepeLink").href =
+  `phonepe://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+// Google Pay
+document.getElementById("gpayLink").href =
+  `tez://upi/pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+// Paytm
+document.getElementById("paytmLink").href =
+  `paytmmp://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
 
   startUPITimer();
 }
@@ -281,22 +295,6 @@ function closeUPI() {
   clearInterval(upiInterval);
   document.getElementById("upiModal").style.display = "none";
 }
-
-// ===== UPI DEEP LINKS =====
-const upiBase =
-  `upi://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
-
-// PhonePe
-document.getElementById("phonepeLink").href =
-  `phonepe://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
-
-// Google Pay
-document.getElementById("gpayLink").href =
-  `tez://upi/pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
-
-// Paytm
-document.getElementById("paytmLink").href =
-  `paytmmp://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
 
 
 /* =====================================================

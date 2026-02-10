@@ -213,6 +213,7 @@ function startPayment() {
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const college = document.getElementById("college").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
 
   if (!name || !email || !college) {
     alert("Please fill all details");
@@ -238,6 +239,7 @@ function startPayment() {
           studentName: name,
           email: email,
           college: college,
+          mobile: mobile,
           eventName: selectedEvent,
           amount: data[selectedEvent].fee,
           paymentId: response.razorpay_payment_id
@@ -251,6 +253,7 @@ function startPayment() {
 👤 Name: ${name}
 📌 Event: ${selectedEvent}
 🏫 College: ${college}
+👤 mobile: ${mobile}
 💳 Payment ID: ${response.razorpay_payment_id}
 
 📍 Venue: EEE Department, JNTUA CEA

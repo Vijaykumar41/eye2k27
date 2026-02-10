@@ -254,9 +254,17 @@ if (!/^[6-9][0-9]{9}$/.test(mobile)) {
   });
 /* ================= UPI DEEP LINKS ================= */
 
-// PhonePe
-document.getElementById("phonepeLink").href =
+// ================= PHONEPE REDIRECT =================
+const phonePeURL =
   `phonepe://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+const phonepeLink = document.getElementById("phonepeLink");
+
+// Important: assign href AND force navigation on click
+phonepeLink.href = phonePeURL;
+phonepeLink.onclick = function () {
+  window.location.href = phonePeURL;
+};
 
 // Google Pay
 document.getElementById("gpayLink").href =

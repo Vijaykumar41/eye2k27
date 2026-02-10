@@ -10,7 +10,7 @@ const data = {
       "Working model or prototype mandatory",
       "One team per college"
     ],
-    fee: 800,
+    fee: 10,
     p1: 3000,
     p2: 1500,
     coords: [
@@ -154,7 +154,11 @@ const data = {
   }
 };
 
+/* =====================================================
+   GLOBALS
+===================================================== */
 let selectedEvent = "";
+let upiInterval = null;
 
 /* =====================================================
    EVENT DETAILS MODAL
@@ -206,7 +210,7 @@ function closeRegister() {
 }
 
 /* =====================================================
-   PAYMENT + BACKEND + WHATSAPP
+   UPI PAYMENT
 ===================================================== */
 function startPayment() {
 
@@ -215,65 +219,115 @@ function startPayment() {
   const college = document.getElementById("college").value.trim();
   const mobile = document.getElementById("mobile").value.trim();
 
-  if (!name || !email || !college) {
+  if (!name || !email || !college || !mobile) {
     alert("Please fill all details");
     return;
   }
+  if (!isValidEmail(email)) {
+  alert("Please enter a valid email address");
+  return;
+}
 
-  const amount = data[selectedEvent].fee * 100;
+if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+  alert("Please enter a valid 10-digit mobile number");
+  return;
+}
 
-  const razorpay = new Razorpay({
-    key: "rzp_test_xxxxxxxxxx", // 🔴 Replace with LIVE key
-    amount: amount,
-    currency: "INR",
-    name: "EYE2K26",
-    description: selectedEvent + " Registration",
+  closeRegister();
 
-    handler: function (response) {
+  const amount = data[selectedEvent].fee;
 
-      /* ===== SAVE TO BACKEND ===== */
-      fetch("https://YOUR-BACKEND-URL.onrender.com/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          studentName: name,
-          email: email,
-          college: college,
-          mobile: mobile,
-          eventName: selectedEvent,
-          amount: data[selectedEvent].fee,
-          paymentId: response.razorpay_payment_id
-        })
-      });
+  document.getElementById("upiEvent").innerText = selectedEvent;
+  document.getElementById("upiAmount").innerText = amount;
+  document.getElementById("upiModal").style.display = "flex";
 
-      /* ===== WHATSAPP CONFIRMATION ===== */
-      const message =
-`🎉 *EYE2K26 Registration Confirmed* 🎉
+  const upiID = "vijaykumar5127865@okhdfcbank"; // 🔴 CHANGE THIS
+  const note = `${selectedEvent} - ${name}`;
 
-👤 Name: ${name}
-📌 Event: ${selectedEvent}
-🏫 College: ${college}
-👤 mobile: ${mobile}
-💳 Payment ID: ${response.razorpay_payment_id}
+  const upiURL =
+    `upi://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
 
-📍 Venue: EEE Department, JNTUA CEA
-📅 Date: 05–06 March 2026
-
-Thank you for registering!`;
-
-      window.open(
-        "https://wa.me/918688753307?text=" + encodeURIComponent(message),
-        "_blank"
-      );
-
-      alert("Payment Successful!");
-      closeRegister();
-    },
-
-    theme: { color: "#00eaff" }
+  new QRious({
+    element: document.getElementById("upiQR"),
+    value: upiURL,
+    size: 220
   });
 
-  razorpay.open();
+  startUPITimer();
+}
+
+function startUPITimer() {
+  let time = 300;
+  clearInterval(upiInterval);
+
+  upiInterval = setInterval(() => {
+    let min = Math.floor(time / 60);
+    let sec = time % 60;
+
+    document.getElementById("upiTimer").innerText =
+      `${min}:${sec < 10 ? "0" : ""}${sec}`;
+
+    time--;
+
+    if (time < 0) {
+      clearInterval(upiInterval);
+      alert("UPI QR expired. Please try again.");
+      closeUPI();
+    }
+  }, 1000);
+}
+
+function closeUPI() {
+  clearInterval(upiInterval);
+  document.getElementById("upiModal").style.display = "none";
+}
+
+// ===== UPI DEEP LINKS =====
+const upiBase =
+  `upi://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+// PhonePe
+document.getElementById("phonepeLink").href =
+  `phonepe://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+// Google Pay
+document.getElementById("gpayLink").href =
+  `tez://upi/pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+// Paytm
+document.getElementById("paytmLink").href =
+  `paytmmp://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+
+/* =====================================================
+   UTR MODAL
+===================================================== */
+function paymentDone() {
+  clearInterval(upiInterval);
+  closeUPI();
+  document.getElementById("utrModal").style.display = "flex";
+}
+
+function submitUTR() {
+  const utr = document.getElementById("utrInput").value.trim();
+
+  if (!/^[0-9]{12}$/.test(utr)) {
+    alert("Please enter a valid 12-digit UTR number");
+    return;
+  }
+
+  alert(
+    "UTR submitted successfully!\n\n" +
+    "Your registration is under verification.\n" +
+    "You will receive confirmation soon."
+  );
+
+  closeUTR();
+}
+
+function closeUTR() {
+  document.getElementById("utrModal").style.display = "none";
+  document.getElementById("utrInput").value = "";
 }
 
 /* =====================================================
@@ -282,6 +336,8 @@ Thank you for registering!`;
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("navLinks");
+
+  if (!hamburger || !navLinks) return;
 
   hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("active");
@@ -295,3 +351,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+function isValidEmail(email) {
+  const emailRegex =
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+}

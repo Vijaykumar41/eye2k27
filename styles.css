@@ -1960,6 +1960,103 @@ footer {
   position: absolute;
   z-index: 10;
 }
+/*upi timer*/
+#upiTimer{
+  color:#ff4d4d;
+  font-weight:600;
+  margin:10px 0;
+}
+
+canvas{
+  margin:15px auto;
+  display:block;
+}
+
+#utrInput{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  margin:15px 0;
+  text-align:center;
+  font-size:16px;
+  letter-spacing:1px;
+}
+
+
+.amount{
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.upi-apps{
+  display:flex;
+  justify-content:center;
+  gap:26px;
+  margin:14px 0;
+}
+
+.upi-apps div{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:12px;
+  opacity:0.95;
+}
+
+.upi-apps img{
+  width:36px;
+  height:36px;
+  margin-bottom:4px;
+}
+
+.upi-steps{
+  background:#0b1325;
+  border-radius:12px;
+  padding:14px;
+  text-align:left;
+  font-size:14px;
+  margin:15px 0;
+}
+
+.upi-steps h4{
+  margin-bottom:8px;
+  color:#00eaff;
+  font-family:'Orbitron';
+}
+
+.upi-steps ol{
+  padding-left:18px;
+}
+
+.upi-steps li{
+  margin-bottom:6px;
+  line-height:1.4;
+}
+
+
+
+
+
+.upi-links{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin:14px 0;
+}
+
+.upi-btn{
+  padding:8px 14px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:600;
+  color:#fff;
+  text-decoration:none;
+}
+
+.phonepe{ background:#5f259f; }
+.gpay{ background:#1a73e8; }
+.paytm{ background:#00b9f1; }
 
 
 

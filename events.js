@@ -1,6 +1,13 @@
 /* =====================================================
    EVENT DATA
 ===================================================== */
+let currentUPI = {
+  phonepe: "",
+  gpay: "",
+  paytm: ""
+};
+
+
 const data = {
 
   "Project Expo": {
@@ -248,34 +255,23 @@ if (!/^[6-9][0-9]{9}$/.test(mobile)) {
     `upi://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
 
   new QRious({
-    element: document.getElementById("upiQR"),
-    value: upiURL,
-    size: 220
-  });
-/* ================= UPI DEEP LINKS ================= */
+  element: document.getElementById("upiQR"),
+  value: upiURL,
+  size: 220
+});
 
-// ================= PHONEPE REDIRECT =================
-const phonePeURL =
+/* ================= STORE UPI DEEP LINKS ================= */
+currentUPI.phonepe =
   `phonepe://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
 
-const phonepeLink = document.getElementById("phonepeLink");
-
-// Important: assign href AND force navigation on click
-phonepeLink.href = phonePeURL;
-phonepeLink.onclick = function () {
-  window.location.href = phonePeURL;
-};
-
-// Google Pay
-document.getElementById("gpayLink").href =
+currentUPI.gpay =
   `tez://upi/pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
 
-// Paytm
-document.getElementById("paytmLink").href =
+currentUPI.paytm =
   `paytmmp://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
 
+startUPITimer();
 
-  startUPITimer();
 }
 
 function startUPITimer() {
@@ -363,4 +359,20 @@ function isValidEmail(email) {
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return emailRegex.test(email);
+}
+
+
+function openPhonePe() {
+  if (!currentUPI.phonepe) return;
+  window.location.href = currentUPI.phonepe;
+}
+
+function openGPay() {
+  if (!currentUPI.gpay) return;
+  window.location.href = currentUPI.gpay;
+}
+
+function openPaytm() {
+  if (!currentUPI.paytm) return;
+  window.location.href = currentUPI.paytm;
 }

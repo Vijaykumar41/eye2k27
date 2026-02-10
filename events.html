@@ -136,8 +136,6 @@
     <button class="btn" onclick="startPayment()">Proceed to Payment</button>
   </div>
 </div>
-
-<!-- ================= UPI MODAL ================= -->
 <!-- ================= UPI PAYMENT MODAL ================= -->
 <div class="modal" id="upiModal">
   <div class="modal-content center">
@@ -149,41 +147,22 @@
     <!-- QR CODE -->
     <canvas id="upiQR"></canvas>
 
-    <!-- DIRECT UPI APP LINKS -->
-   <div class="upi-links">
-     <a id="phonepeLink" class="upi-btn phonepe">PhonePe</a>
-     <a id="gpayLink" class="upi-btn gpay">GPay</a>
-     <a id="paytmLink" class="upi-btn paytm">Paytm</a>
-   </div>
-
-    <a id="phonepeLink" class="upi-btn phonepe" href="#">PhonePe</a>
-
-
-    <!-- SUPPORTED APPS -->
+    <!-- CLICKABLE UPI APP IMAGES -->
     <div class="upi-apps">
-      <div>
-        <img src="images\phonepay.png" alt="PhonePe">
-        <span>PhonePe</span>
-      </div>
-      <div>
-        <img src="images\gpay.png" alt="Google Pay">
-        <span>GPay</span>
-      </div>
-      <div>
-        <img src="images\paytm.png" alt="Paytm">
-        <span>Paytm</span>
-      </div>
+      <img src="images/phonepay.png" alt="PhonePe" onclick="openPhonePe()">
+      <img src="images/gpay.png" alt="Google Pay" onclick="openGPay()">
+      <img src="images/paytm.png" alt="Paytm" onclick="openPaytm()">
     </div>
 
     <!-- PAYMENT STEPS -->
     <div class="upi-steps">
       <h4>How to Pay</h4>
       <ol>
-        <li>Scan the QR using PhonePe / GPay / Paytm</li>
+        <li>Scan QR or tap a UPI app icon</li>
         <li>Confirm the amount before paying</li>
         <li>Complete payment within <b>5 minutes</b></li>
         <li>Click <b>“I Have Paid”</b> after payment</li>
-        <li>Enter the <b>UTR number</b> in next step</li>
+        <li>Enter the <b>UTR number</b></li>
       </ol>
     </div>
 
@@ -192,8 +171,6 @@
     <button class="btn" onclick="paymentDone()">I Have Paid</button>
   </div>
 </div>
-
-
 
 
 <!-- ================= UTR MODAL ================= -->

@@ -1,15 +1,39 @@
-// Countdown
-const eventDate = new Date("March 10, 2026 10:00:00").getTime();
-const timer = document.getElementById("countdown");
+const eventDate = new Date(2026, 2, 24, 10, 0, 0).getTime();
 
-setInterval(() => {
+const countdownContainer = document.querySelector(".countdown");
+
+const interval = setInterval(() => {
   const now = new Date().getTime();
   const diff = eventDate - now;
-  if (timer) {
-    timer.innerHTML =
-      Math.floor(diff / (1000 * 60 * 60 * 24)) + " Days Left";
+
+  if (diff <= 0) {
+    clearInterval(interval);
+
+    // Replace countdown with message
+    countdownContainer.innerHTML = `
+      <div class="event-started">
+        ⚡ EVENT STARTED ⚡
+      </div>
+    `;
+
+    // Add animation class
+    countdownContainer.classList.add("started-animation");
+
+    return;
   }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((diff % (1000*60)) / 1000);
+
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+
 }, 1000);
+
 
 // Modal
 function openModal(title) {

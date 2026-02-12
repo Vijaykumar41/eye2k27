@@ -2065,3 +2065,34 @@ canvas{
 
 
 
+.event-started {
+  font-size: 32px;
+  font-weight: 700;
+  color: #00eaff;
+  text-align: center;
+  padding: 25px 40px;
+  border-radius: 20px;
+  background: rgba(0, 234, 255, 0.08);
+  box-shadow: 0 0 30px rgba(0,234,255,0.6);
+  animation: electricGlow 1.2s infinite alternate;
+}
+
+@keyframes electricGlow {
+  from {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(0,234,255,0.5);
+  }
+  to {
+    transform: scale(1.08);
+    box-shadow: 0 0 60px rgba(168,85,247,0.9);
+  }
+}
+
+.started-animation {
+  animation: flashBackground 1s ease-in-out;
+}
+
+@keyframes flashBackground {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}

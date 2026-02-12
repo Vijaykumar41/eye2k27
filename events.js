@@ -104,7 +104,7 @@ const data = {
   "Hackathon": {
     desc: "24-hour innovation challenge to solve real-world problems.",
     rules: [
-      "Team of 3 to 5 members",
+      "Team of 1 to 4 members",
       "Problem statement given on spot",
       "Bring your own laptops"
     ],
@@ -116,16 +116,17 @@ const data = {
     ]
   },
 
-  "Treasure Hunt": {
-    desc: "Logic-based treasure hunt filled with fun and challenges.",
+  "open": {
+    desc: "Showcase your talent in singing, poetry, comedy, or storytelling on the open stage",
     rules: [
-      "Team of 3 members",
-      "Mobile phones allowed",
-      "Follow instructions carefully"
+      "Individual participation only.",
+      "Participants can perform singing, poetry, storytelling, stand-up comedy, or any creative act.",
+      "Vulgar, offensive, or inappropriate content is strictly prohibited",
+      "Judges’ decision will be final and binding."
     ],
     fee: 200,
-    p1: 1000,
-    p2: 500,
+    p1: 2500,
+    p2: 800,
     coords: [
       "R Harsha – 9000011111"
     ]
@@ -139,26 +140,57 @@ const data = {
       "Basic editing allowed"
     ],
     fee: 200,
-    p1: 1000,
-    p2: 500,
+    p1: 2500,
+    p2: 800,
     coords: [
-      "V Anjali – 9887766554"
+      "Student Coordinators"
     ]
   },
 
-  "Fun Games": {
+  "Chess": {
+    desc: "Test your strategic thinking and tactical skills in an intense battle of minds. Compete against fellow participants and prove your mastery in the ultimate game of strategy.",
+    rules: [
+      "The tournament will follow a knockout / Swiss format (based on number of participants).",
+      "Each player will be given a fixed time limit (e.g., 10 minutes per player)",
+      "Standard FIDE rules will be followed",
+      "Decision of the organizers/judges will be final"
+    ],
+    fee: 300,
+    p1: 3400,
+    p2: 900,
+    coords: [
+      "Student Coordinators"
+    ]
+  },
+   "reel": {
     desc: "Exciting fun and team-based games.",
     rules: [
       "On-spot registration",
       "Rules explained at venue"
     ],
-    fee: 100,
+    fee: 0,
     p1: 500,
-    p2: 300,
+    p2: 200,
     coords: [
       "Student Coordinators"
     ]
-  }
+  },
+  "Drawing": {
+    desc: "Express your imagination and creativity through colors and art. Showcase your artistic skills and bring your ideas to life on canvas during the fest..",
+    rules: [
+      "Individual participation only.",
+      "Only original artwork is allowed.",
+      "Any form of tracing or copying is strictly prohibited.",
+      "Judges’ decision will be final and binding."
+    ],
+    fee: 300,
+    p1: 3000,
+    p2: 1000,
+    coords: [
+      "Student Coordinators"
+    ]
+  },
+
 };
 
 /* =====================================================

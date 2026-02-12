@@ -53,7 +53,7 @@
   <a href="events.html" class="btn">Explore Events</a>
 
   <div class="hero-info">
-    <p>📅 <b>05 – 06 March 2026</b></p>
+    <p>📅 <b>24 – 25 March 2026</b></p>
     <p>Department of Electrical and Elctronics Engineering</p>
     <p>📍 JNTUA College of Engineering, Ananthapuramu</p>
   </div>
@@ -84,15 +84,16 @@
 
     <div class="highlight-card">
       <img id="sessionImg" src="images\circuithunt.png" alt="Session Image">
-
       <div class="highlight-content">
         <span class="highlight-tag">SESSION</span>
         <h3 id="sessionTitle">Theme Expo</h3>
-        <p class="date" id="sessionDate">📅 05 March 2026</p>
+        <p class="date" id="sessionDate">📅 24 March 2026</p>
         <p class="desc" id="sessionDesc">
           Showcasing innovative ideas and prototypes in EEE.
         </p>
       </div>
+
+      
     </div>
 
     <button class="nav-btn right" onclick="nextSession()">❯</button>
@@ -149,7 +150,7 @@ JNTUA College of Engineering, Ananthapuramu stands aloft on a solid foundation o
 <!-- ================= ABOUT DEPARTMENT ================= -->
 <section class="section glass fade">
   <div class="grid">
-    <img src="images/eeedepart.jpg">
+    <img src="images\depart.webp">
     <div class="text">
       <h2>About the Department</h2>
       <p>
@@ -165,10 +166,6 @@ JNTUA College of Engineering, Ananthapuramu stands aloft on a solid foundation o
   <p>© 2026 EYE2K26 | Department of EEE, JNTUA CEA</p>
 </footer>
 
-<!-- ================= SCRIPTS ================= -->
-
-<!-- Scroll fade -->
-<!-- ================= SCRIPTS ================= -->
 
 <script>
 /* ================= SCROLL FADE ================= */
@@ -215,21 +212,21 @@ const sessions = [
   {
     title: "Fun Games",
     tag: "ENTERTAINMENT",
-    date: "📅 05 – 06 March 2026",
+    date: "📅 23,24,25 March 2026",
     desc: "Team games, challenges, and exciting spot events.",
     img: "images/games.jpg"
   },
   {
     title: "Flashmob",
     tag: "SPECIAL",
-    date: "📅 06 March 2026",
+    date: "📅 24 March 2026",
     desc: "High-energy flashmob performance by students.",
     img: "images/flashmob.png"
   },
   {
     title: "Ethnic Wear",
     tag: "SPECIAL",
-    date: "📅 06 March 2026",
+    date: "📅 25 March 2026",
     desc: "High-energy Traditional wear in the Department.",
     img: "images/flashmob.jpg"
   }
@@ -283,32 +280,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderSession(); // load first session
 });
-
-
-/* ================= COUNTDOWN ================= */
-
-const festDate = new Date("March 5, 2026 09:00:00").getTime();
-
-setInterval(() => {
-  const now = Date.now();
-  const diff = festDate - now;
-  if (diff <= 0) return;
-
-  document.getElementById("days").innerText =
-    String(Math.floor(diff / 86400000)).padStart(2, "0");
-
-  document.getElementById("hours").innerText =
-    String(Math.floor(diff / 3600000) % 24).padStart(2, "0");
-
-  document.getElementById("minutes").innerText =
-    String(Math.floor(diff / 60000) % 60).padStart(2, "0");
-
-  document.getElementById("seconds").innerText =
-    String(Math.floor(diff / 1000) % 60).padStart(2, "0");
-}, 1000);
-
 </script>
 
+<script src="script.js"></script>
+</body>
 
 </body>
 </html>

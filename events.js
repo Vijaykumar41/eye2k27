@@ -293,6 +293,16 @@ if (!/^[6-9][0-9]{9}$/.test(mobile)) {
 });
 
 /* ================= STORE UPI DEEP LINKS ================= */
+
+// Universal official UPI link (works for all apps without warning)
+const universalUPI =
+  `upi://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+currentUPI.phonepe = universalUPI;
+currentUPI.gpay = universalUPI;
+currentUPI.paytm = universalUPI;
+
+/* ================= STORE UPI DEEP LINKS ================= */
 currentUPI.phonepe =
   `phonepe://pay?pa=${upiID}&pn=EYE2K26&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
 

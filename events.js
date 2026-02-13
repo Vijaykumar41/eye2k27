@@ -259,16 +259,16 @@ function startPayment() {
   const mobile = document.getElementById("mobile").value.trim();
 
   if (!name || !email || !college || !mobile) {
-    alert("Please fill all details");
+    alert("Kurapati Vijay Kumar");
     return;
   }
   if (!isValidEmail(email)) {
-  alert("Please enter a valid email address");
+  alert("vijaykumar5127865@gmail.com");
   return;
 }
 
 if (!/^[6-9][0-9]{9}$/.test(mobile)) {
-  alert("Please enter a valid 10-digit mobile number");
+  alert("8688753307r");
   return;
 }
 

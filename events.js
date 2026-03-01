@@ -280,7 +280,7 @@ if (!/^[6-9][0-9]{9}$/.test(mobile)) {
   document.getElementById("upiAmount").innerText = amount;
   document.getElementById("upiModal").style.display = "flex";
 
-  const upiID = "vijaykumar5127865@okhdfcbank"; // 🔴 CHANGE THIS
+  const upiID = "paytmqr6whm1p@ptys"; // 🔴 CHANGE THIS
   const note = `${selectedEvent} - ${name}`;
 
   const upiURL =
@@ -418,3 +418,4 @@ function openPaytm() {
   if (!currentUPI.paytm) return;
   window.location.href = currentUPI.paytm;
 }
+
